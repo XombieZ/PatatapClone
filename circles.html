@@ -19,15 +19,29 @@
 	// PaperScript does that for us, and much more!
 	//path.lineTo(end);
      
+     var listOfCircles = [];
+     
+    function onKeyDown(event)
+    {   
+    	var maxPoint = new Point(view.size.width, view.size.height);
+    	var randomPoint= Point.random(); 
+        var point = maxPoint * randomPoint;
+       
+        var Circle = new Path.Circle(point, 300);
+        Circle.fillColor  ="green";
+        listOfCircles.push(Circle);
+    }
 
-   for(startY = 50; startY < 1000; startY+=100)
-   {
-	   for(startX = 50; startX < 1000; startX+=100 )
-	   {
-		  var myCircle = new Path.Circle(new Point(startX, startY), 10);
-	      myCircle.fillColor = 'red';
-	   }
-   }
+    
+    function onFrame(event)
+    {  
+       for(var Index = 0; Index < listOfCircles.length; Index++)
+       {
+       	 listOfCircles[Index].fillColor.hue += 1;
+       	 listOfCircles[Index].scale(0.95);
+       } 
+    }
+ 
 </script>
 </head>
 <body>
